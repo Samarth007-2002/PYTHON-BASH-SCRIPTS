@@ -32,10 +32,6 @@ def main():
         for secret in secrets:
             secret_name = secret['Name']
 
-            if scan_for_smtp_in_key(secret_name):
-                print(f"SMTP-related secret found in key: {secret_name}")
-
-            # Fetch secret value to double-check
             try:
                 secret_value_response = secrets_client.get_secret_value(SecretId=secret_name)
                 secret_value = secret_value_response.get('SecretString', '')
